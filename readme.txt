@@ -1,0 +1,1 @@
+inside backend/model folder we create mongoDb model which file name's first letter must be capital letter
