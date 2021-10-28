@@ -1,28 +1,29 @@
-import mongoose from 'mongoose';
+const mongoose=require("mongoose")
   const { Schema } = mongoose;
 
   const userSchema = new Schema({
 
     name:{
-        type:string,
+        type:String,     // datatype String first letter S must be capital letter
         required:true,
     },
     email:{
-        type:string,
-        required:true,
-    },
-    password:{
-        type:string,
+        type:String,
         required:true,
         unique:true,
     },
+    password:{
+        type:String,
+        required:true,
+        
+    },
     date:{
-        type:string,
+        type:String,
         default:Date.now     //here not used '()' after the Date.now function
     },
     
   });
 
-  module.export=mongoose.model("user",UserSchema);
+  module.exports= mongoose.model("user",userSchema);
 
   //here i create the schema of user collection in mongodb Database and export it
