@@ -1,13 +1,12 @@
 const express = require('express')
-
-const User = require("../models/Users");
-
+const bcrypt= require('bcryptjs')
+const jwt=require('jsonwebtoken')
 const { body, validationResult } = require('express-validator')
-
+const User = require("../models/Users");
 const router = express.Router()
 
-//Create a User using: POST "/api/auth/createuser". NO login required
 
+//Create a User using: POST "/api/auth/createuser". NO login required
 router.post('/createuser', [
     // body('name').isLength({min:3}),         //here i used express validator for sanitize user input
     // body('email').isEmail(),                 //without any error message 
@@ -31,15 +30,29 @@ router.post('/createuser', [
             return res.status(400).json({ error: "Sorry a user Exist with this Email" })
         }
 
+        const salt= await bcrypt.genSalt(10)
+        const secPass= await bcrypt.hash(req.body.password,salt);    //the genSalt() and hash() method work like php md5 and sha1() method 
+
         //it insert the data in mongodb database 
-        let myuser = await User.create({
+        let myUser = await User.create({
             name: req.body.name,
-            password: req.body.password,
+            password: secPass,
             email: req.body.email
 
         })
-        res.json(myuser)  //it send myuser's value as a json to the client in the response
+
+        //token generation cade is here
+        const JWT_SECRET='Harryisagood$boy'
+        const data={
+            user:{              //here using jsonwebtoken package and its method we create a token(like php cookies) and send to the client
+                id:myUser.id
+            }
+        }
+        const jwtData=jwt.sign(data,JWT_SECRET)  //sign() method get data,secretKey string(2nd parameter and generate token)
+        res.json(jwtData)  
     }
+
+
     catch (err) 
     {
         console.error(err)  //it work same as console.log() when we pass exception object in side console.error() 
