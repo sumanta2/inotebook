@@ -25,7 +25,7 @@ const mongoose=require("mongoose")
   });
 
   const User= mongoose.model("user",userSchema);
-  User.createIndexes();
+
   module.exports=  User;
 
   //here i create the schema of user collection in mongodb Database and export it
