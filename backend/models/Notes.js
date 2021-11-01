@@ -1,28 +1,31 @@
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
+const { Schema } = mongoose;
 
-  const { Schema } = mongoose;
 
-  const notesSchema = new Schema({
+const notesSchema = new Schema({
+    user:{
+        type:mongoose.Schema.Types.ObjectId,  // it helps to store UserId of another(Here models/User model) models used like foreign key in MYSQL
+        ref:'user'   //  it get the reference of the model which's  model's collection Id will stores here
+    },
+    title: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    tag: {
+        type: String,
+        default: "General"
+    },
+    date: {
+        type: String,
+        default: Date.now     //here not used '()' after the Date.now function
+    },
 
-    title:{
-        type:string,
-        required:true,
-    },
-    description:{
-        type:string,
-        required:true,
-    },
-    tag:{
-        type:string,
-        default:"General"
-    },
-    date:{
-        type:string,
-        default:Date.now     //here not used '()' after the Date.now function
-    },
-    
-  });
+});
 
-  module.export=mongoose.model("notes",NotesSchema);
+module.exports = mongoose.model("notes", notesSchema);
 
   //here i create the schema of note collection in mongodb Database and export it

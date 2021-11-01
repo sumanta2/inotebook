@@ -14,7 +14,7 @@ const port = 5000
 app.use(express.json())  //this code help to receive json data in backend send by font-end  api
 
 app.use('/api/auth',require('./routes/auth'))
-app.use('/api/note',require('./routes/note'))
+app.use('/api/notes',require('./routes/note'))
 
 
 app.listen(port, () => {
