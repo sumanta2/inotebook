@@ -9,7 +9,7 @@ const fetchuser = require('../middleware/fetchuser')
 //ROUTE1: Get All Notes using: GET "/api/notes/login", Login required
 router.get('/fetchallnotes', fetchuser, async (req, res) => {  //fetchuser is a user defined middleware
     try {
-
+        
         const notes = await Notes.find({ user: req.user.id })
         res.json(notes)
     }
