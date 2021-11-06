@@ -13,6 +13,7 @@ node_modules
 
 # production
 /build
+/readme.txt
 
 # misc
 .DS_Store
