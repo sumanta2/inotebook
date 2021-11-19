@@ -18,7 +18,7 @@ app.use('/api/notes',require('./routes/note'))
 
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`INotebook backend app listening at http://localhost:${port}`)
 })
 
 // app.use() used for using any middleware
