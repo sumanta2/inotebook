@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link,useLocation } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 //after installing bootstrap using npm command we import the required bootstrap file to  use bootstrap classes;
