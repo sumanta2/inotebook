@@ -6,7 +6,7 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
     const notesInitial=[
         {
-          "_id": "617ffac5ab9d96aa29b2bc22",
+          "_id": "617ffac55ab9d96aa29b2bc22",
           "user": "617cd7c14430a42e6770b2a1",
           "title": "My title is this",
           "description": "Please wake up early",
@@ -15,7 +15,7 @@ const NoteState = (props) => {
           "__v": 0
         },
         {
-          "_id": "6180af5083730bd65ca562f6",
+          "_id": "6180af65083730bd65ca562f6q",
           "user": "617cd7c14430a42e6770b2a1",
           "title": "My title is this",
           "description": "Please wake up early",
@@ -24,7 +24,7 @@ const NoteState = (props) => {
           "__v": 0
         },
         {
-            "_id": "617ffac5ab9d96aa29b2bc22",
+            "_id": "617ff2ac5ab9d96aa29b2bc22",
             "user": "617cd7c14430a42e6770b2a1",
             "title": "My title is this",
             "description": "Please wake up early",
@@ -33,7 +33,24 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "6180af5083730bd65ca562f6",
+            "_id": "61870af5083730bd65ca562f6T",
+            "user": "617cd7c14430a42e6770b2a1",
+            "title": "My title is this",
+            "description": "Please wake up early",
+            "tag": "personal",
+            "date": "1635823440488",
+            "__v": 0
+          },{
+            "_id": "617ffac5ab9d96aa279b2bc22",
+            "user": "617cd7c14430a42e6770b2a1",
+            "title": "My title is this",
+            "description": "Please wake up early",
+            "tag": "personal",
+            "date": "1635777221149",
+            "__v": 0
+          },
+          {
+            "_id": "6180af5083730bd65ca562f6X",
             "user": "617cd7c14430a42e6770b2a1",
             "title": "My title is this",
             "description": "Please wake up early",
@@ -50,24 +67,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "6180af5083730bd65ca562f6",
-            "user": "617cd7c14430a42e6770b2a1",
-            "title": "My title is this",
-            "description": "Please wake up early",
-            "tag": "personal",
-            "date": "1635823440488",
-            "__v": 0
-          },{
-            "_id": "617ffac5ab9d96aa29b2bc22",
-            "user": "617cd7c14430a42e6770b2a1",
-            "title": "My title is this",
-            "description": "Please wake up early",
-            "tag": "personal",
-            "date": "1635777221149",
-            "__v": 0
-          },
-          {
-            "_id": "6180af5083730bd65ca562f6",
+            "_id": "6180af5083730bd65ca562f6ki",
             "user": "617cd7c14430a42e6770b2a1",
             "title": "My title is this",
             "description": "Please wake up early",
