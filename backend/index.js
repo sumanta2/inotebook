@@ -1,5 +1,7 @@
 const connectToMongo=require("./db")
 const express = require('express')
+var cors = require('cors')
+
 
 // const User=require("../models/Users");
 
@@ -11,6 +13,7 @@ connectToMongo();
 const app = express()
 const port = 5000
 
+app.use(cors())
 app.use(express.json())  //this code help to receive json data in backend send by font-end  api
 
 app.use('/api/auth',require('./routes/auth'))
