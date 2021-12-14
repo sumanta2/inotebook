@@ -18,7 +18,6 @@ const NoteState = (props) => {
         }
       })
       const json= await response.json()
-      console.log("Adding a new NOte",json)
       setNotes(json)
       }
     const notesInitial=[]
@@ -78,7 +77,7 @@ const NoteState = (props) => {
         const url=`${host}api/notes/updatenote/${id}`
         //API CALL
         const response= await fetch(url,{
-          method:'POST',
+          method:'PUT',
           headers:{
             'Content-Type':'application/json',
             'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3Y2Q3YzE0NDMwYTQyZTY3NzBiMmExIn0sImlhdCI6MTYzNTY3NDQxNX0.eR0JZA1kd5gKHQr-TCg_SgidVOTvptDePsGTWgdhcSo'
@@ -87,17 +86,24 @@ const NoteState = (props) => {
         })
         // const json=response.json()
         
-        for(let index=0;index<notes.length;index++)
+
+        let newNotes=JSON.parse(JSON.stringify(notes))
+
+        for(let index=0;index<newNotes.length;index++)
         {
-          const element=notes[index]
+          const element=newNotes[index]
           if(element._id=== id)
           {
-            element._id=id;
-            element.title=title;
-            element.tag=tag
+            console.log('i run')
+            newNotes[index]._id=id;
+            newNotes[index].title=title;
+            newNotes[index].description=description;
+            newNotes[index].tag=tag;
+            break;
           }
-
+          
         }
+        setNotes(newNotes)
 
       }
     
