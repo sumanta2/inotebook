@@ -33,7 +33,7 @@ const Notes = () => {
     }
 
     const handleClick=(e)=>{
-        console.log("Updating the note"+note.etitle)
+        //console.log("Updating the note"+note.etitle)
         editNote(note.id,note.etitle,note.edescription,note.etag)
         modalOpenSet(!modalOpen)
         // addNote(note.title,note.description,note.tag)
@@ -63,12 +63,15 @@ const Notes = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={() => { handleModal() }}>Close</Button>
-                        <Button onClick={handleClick}>Update Note</Button>
+                        <Button onClick={handleClick} disabled={ note.etitle.length<5 || note.edescription.length< 5}>Update Note</Button>
                     </Modal.Footer>
                 </Modal>
             </div>
             <div className='row my-3'>
                 <h2>Your Notes</h2>
+                <div className="container mx-3">
+                {notes.length===0 && 'No notes to display'}
+                </div>
                 {
                     notes.map((note) => {
                         return <Noteitem key={note._id} updateNote={updateNote} note={note} />

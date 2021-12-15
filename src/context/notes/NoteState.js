@@ -36,18 +36,8 @@ const NoteState = (props) => {
           },
           body:JSON.stringify({title:title,description:description,tag:tag})
         })
-        // const json=response.json()
-        // console.log("Adding a new NOte")
-        const note={
-          
-          "_id": "6180af508373bd65ca562i9ya8t",
-          "user": "617cd7c14430a42e6770b2a1",
-          "title": title,
-          "description": description,
-          "tag": tag,
-          "date": "1635823440488",
-          "__v": 0
-        }
+        const note= await response.json()
+        
         setNotes(notes.concat(note))  //here use concat() method instead of push() method because concat() add the parameter value to the existing array and return the whole array but push 
       }
 
@@ -64,10 +54,10 @@ const NoteState = (props) => {
             'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE3Y2Q3YzE0NDMwYTQyZTY3NzBiMmExIn0sImlhdCI6MTYzNTY3NDQxNX0.eR0JZA1kd5gKHQr-TCg_SgidVOTvptDePsGTWgdhcSo'
           },
         });
-        const json=response.json()
-        console.log(json)
+        const json= await response.json()
+         console.log(json)
 
-        console.log("deleting the note with this id"+id)
+        // console.log("deleting the note with this id"+id)
         const newNotes= notes.filter((note)=>{ return note._id!==id})
         setNotes(newNotes)
         
@@ -84,7 +74,7 @@ const NoteState = (props) => {
           },
           body:JSON.stringify({title,description,tag})
         })
-        // const json=response.json()
+        const json= await response.json()
         
 
         let newNotes=JSON.parse(JSON.stringify(notes))
@@ -94,7 +84,7 @@ const NoteState = (props) => {
           const element=newNotes[index]
           if(element._id=== id)
           {
-            console.log('i run')
+            // console.log('i run')
             newNotes[index]._id=id;
             newNotes[index].title=title;
             newNotes[index].description=description;
