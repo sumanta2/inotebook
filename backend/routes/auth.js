@@ -81,11 +81,12 @@ router.post('/login', [
 
     //If there are errors, return Bad request and the errors
 ], async (req, res) => {
+    let success=false
 
     //If there are errors, return Bad request and the errors
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: "errors.array()" })
+        return res.status(400).json({ errors: errors.array() })
     }
     const { email, password } = req.body; //here object destructuring concept is used
 
@@ -107,7 +108,7 @@ router.post('/login', [
         }
         const JWT_SECRET = 'Harryisagood$boy'
         const authToken = jwt.sign(data, JWT_SECRET)   //here generate the token(like session in PHP)
-        res.json({ authToken })
+        res.json({status:true, authToken:authToken })
     }
     catch (error) {
         console.error(error)  //it work same as console.log() when we pass exception object in side console.error() 

@@ -2,9 +2,9 @@ inside backend/model folder we create mongoDb model which file name's first lett
 
 
 
-24th part    complete
+25th part    complete
 
-video 68    complete
+video 69    complete
 
 
 Helping video outside from code with harry's Youtube Playlist
