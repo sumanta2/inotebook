@@ -19,16 +19,17 @@ router.post('/createuser', [
 
 ], async (req, res) => {     //router.get() work same as app.get() where "app=express()"
     //if there are errors, return Bad request and the errors
+    let success=false;  //success variable value used in font end to check the request successfully processed or not
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ Errors: errors.array() });
+        return res.status(400).json({success:success, Errors: errors.array() });
     }
 
     try {
         //check whether the user with this email exists already
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ error: "Sorry a user Exist with this Email" })
+            return res.status(400).json({success:success, error: "Sorry a user Exist with this Email" })
         }
 
         const salt = await bcrypt.genSalt(10)
@@ -50,7 +51,7 @@ router.post('/createuser', [
             }
         }
         const jwtData = jwt.sign(data, JWT_SECRET)  //sign() method get data,secretKey string(2nd parameter and generate token)
-        res.json(jwtData)
+        res.json({success:true,jwtData})
     }
 
 

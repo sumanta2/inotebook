@@ -40,18 +40,18 @@ const Login = () => {
 
     return (
         <>
-            I am login
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" name='email' id="exampleInputEmail1" aria-describedby="emailHelp" value={credentials.name} onChange={onChange} placeholder="Enter email"/>
+                    <input type="email" className="form-control my-2" name='email' id="exampleInputEmail1" required aria-describedby="emailHelp" value={credentials.name} onChange={onChange} placeholder="Enter email"/>
                         <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" name='password' id="exampleInputPassword1" placeholder="Password" value={credentials.password} onChange={onChange}/>
+                    <input type="password" className="form-control my-2" name='password' id="exampleInputPassword1" required placeholder="Password" value={credentials.password} onChange={onChange}/>
                 </div>
-                <button type="Submit" className="btn btn-primary">Submit</button>
+                <button type="Submit" className="btn btn-primary my-2">Submit</button>
             </form>
         </>
     )
