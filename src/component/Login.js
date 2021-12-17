@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
 
-const Login = () => {
+const Login = (props) => {
 
     const [credentials,setCredentials]=useState({email:'',password:''})
 
@@ -25,12 +25,14 @@ const Login = () => {
             //To clear a specific item
             //localStorage.removeItem('token');
               localStorage.setItem('token', json.authToken)
+              props.showAlert("Logged in Successfully","success")
               history.push('/')
 
               //redirect
           }
           else{
-              alert("False enter data")
+            //   alert("False enter data")
+            props.showAlert("Invalid Credentials","danger")
           }
     }
 

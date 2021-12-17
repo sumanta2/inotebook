@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
 
     const history = useHistory()
     const [credentials, setCredentials] = useState({ name: '', email: '', password: '', cpassword: '' })
@@ -31,16 +31,20 @@ const Signup = () => {
                 //To clear a specific item
                 //localStorage.removeItem('token');
                 localStorage.setItem('token', json.authToken)
+                props.showAlert("Account Created Successfully","success")
+
                 history.push('/')
 
                 //redirect
             }
             else {
-                alert("False enter data")
+                // alert("False enter data")
+                props.showAlert("Invalid Details","danger")
             }
         }
         else {
-            alert("Last two field value must be same")
+            // alert("Last two field value must be same")
+            props.showAlert("Two password field value must be same","danger")
         }
     }
 
