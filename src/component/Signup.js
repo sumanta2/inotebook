@@ -10,6 +10,7 @@ const Signup = (props) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -33,7 +34,7 @@ const Signup = (props) => {
                 localStorage.setItem('token', json.authToken)
                 props.showAlert("Account Created Successfully","success")
 
-                history.push('/')
+                history.push('/login')
 
                 //redirect
             }
@@ -51,7 +52,7 @@ const Signup = (props) => {
 
     return (
         <>
-            <h1>Signup</h1>
+            <h1>Create an account to use I-Notebook</h1>
             <div className="container">
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">

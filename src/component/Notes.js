@@ -4,14 +4,23 @@ import noteContext from "../context/notes/noteContext"
 import AddNote from './AddNote';
 import Noteitem from './Noteitem'
 import { Button, Modal} from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const Notes = (props) => {
     const context = useContext(noteContext)
     const { notes, getNotes,editNote} = context
     const [note,setNote]=useState({id:'',etitle:'',edescription:'',etag:''})
     const [modalOpen, modalOpenSet] = useState()
+    const history=useHistory()
     useEffect(() => {
-        getNotes()
+        if(localStorage.getItem('token'))
+        {
+            getNotes()
+        }
+        else{
+            props.showAlert("Login Required to access Note","danger")
+            history.push("/login")
+        }
         modalOpenSet(false)
     }, [])
     // const ref=useRef()

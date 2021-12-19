@@ -1,13 +1,20 @@
 import React from 'react';
-import { Link,useLocation } from 'react-router-dom';
+import { Link,useHistory,useLocation } from 'react-router-dom';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 //after installing bootstrap using npm command we import the required bootstrap file to  use bootstrap classes;
 
-const Navbar = () => {
+const Navbar = (prop) => {
     const location=useLocation()
+    const history=useHistory()
     // useEffect(()=>{
     //     console.log(location)  Here I check Location variable value
     // },[location])
+
+    const handleLogOut=()=>{
+        localStorage.removeItem('token')
+        prop.showAlert("Logout Successfully","success")
+        history.push('/login')
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,10 +32,10 @@ const Navbar = () => {
                                 <Link className={`nav-link ${location.pathname==='/about'?'active':''}`} to="/about">About</Link>
                             </li>
                         </ul>
-                        <form className='d-flex'>
+                        { !localStorage.getItem('token') ?<form className='d-flex'>
                         <Link className="btn btn-primary mx-1" to='/login' role='button'>Login</Link>
                         <Link className="btn btn-primary" to='/signup' role='button'>SignUp</Link>
-                        </form>
+                        </form>: <button className="btn btn-primary" onClick={handleLogOut}>Logout</button>}
                     </div>
                 </div>
             </nav>
