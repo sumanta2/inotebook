@@ -1,42 +1,49 @@
 import React, { useState } from 'react'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 const Login = (props) => {
 
-    const [credentials,setCredentials]=useState({email:'',password:''})
-    const history=useHistory()
+    const [credentials, setCredentials] = useState({ email: '', password: '' })
+    const history = useHistory()
 
-    const handleSubmit = async (e)=>{
-        e.preventDefault()
-        
-        const response= await fetch("http://localhost:5000/api/auth/login",{
-            method:'POST',
-            headers:{
-              'Content-Type':'application/json',
-            },
-            body:JSON.stringify({email:credentials.email,password:credentials.password})
-          });
-          const json= await response.json()
-          if (json.status===true)
-          {
+    const handleSubmit = async (e) => {
+       try {
+            e.preventDefault()
 
-            //To clear a specific item
-            //localStorage.removeItem('token');
-              localStorage.setItem('token', json.authToken)
-              props.showAlert("Logged in Successfully","success")
-              history.push('/')
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: credentials.email, password: credentials.password })
+            });
+            const json = await response.json()
+            if (json.status === true) {
 
-              //redirect
-          }
-          else{
-            //   alert("False enter data")
-            props.showAlert("Invalid Credentials","danger")
-          }
+                //To clear a specific item
+                //localStorage.removeItem('token');
+                localStorage.setItem('token', json.authToken)
+                props.showAlert("Logged in Successfully", "success")
+                history.push('/')
+
+                //redirect
+            }
+            else {
+                //   alert("False enter data")
+                localStorage.setItem('token', '')
+                props.showAlert("Invalid Credentials", "danger")
+            }
+        }
+        catch(err)
+        {
+            console.log(err)
+            console.log("--------------------------------------------------------")
+        }
     }
 
-    const onChange=(e)=>{
-        setCredentials({...credentials,[e.target.name]:e.target.value})
+    const onChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
 
     return (
@@ -45,12 +52,12 @@ const Login = (props) => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control my-2" name='email' id="exampleInputEmail1" required aria-describedby="emailHelp" value={credentials.name} onChange={onChange} placeholder="Enter email"/>
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input type="email" className="form-control my-2" name='email' id="exampleInputEmail1" required aria-describedby="emailHelp" value={credentials.name} onChange={onChange} placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control my-2" name='password' id="exampleInputPassword1" required placeholder="Password" value={credentials.password} onChange={onChange}/>
+                    <input type="password" className="form-control my-2" name='password' id="exampleInputPassword1" required placeholder="Password" value={credentials.password} onChange={onChange} />
                 </div>
                 <button type="Submit" className="btn btn-primary my-2">Submit</button>
             </form>

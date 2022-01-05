@@ -95,12 +95,12 @@ router.post('/login', [
 
         let user = await User.findOne({ email: email })  //findOne method fetch data form mongodb database according to email inputted by user
         if (!user) {
-            res.status(400).json({ error: "Please try to login using correct Data" })
+            return res.status(400).json({ error: "Please try to login using correct Data" })
         }
 
         const passwordCompare = await bcrypt.compare(password, user.password)
         if (!passwordCompare) {
-            res.status(400).json({ error: "Please try to login using correct Data" })
+           return res.status(400).json({ error: "Please try to login using correct Data" })
         }
         const data = {
             user: {

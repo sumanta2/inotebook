@@ -8,6 +8,7 @@ import Alert from './component/Alert';
 import Login from './component/Login';
 import Signup from './component/Signup';
 import { useState } from 'react';
+import NotFound from './component/NotFound';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
               <Route exact path='/signup'>
                 <Signup showAlert={showAlert}/>
               </Route>
+              <Route component={NotFound}/>
             </Switch>
           </div>
         </Router>
