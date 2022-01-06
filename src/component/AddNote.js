@@ -14,7 +14,7 @@ const AddNote=(props)=>{
     const handleClick=(e)=>{
         e.preventDefault()
         addNote(note.title,note.description,note.tag)
-        props.showAlert("Data Inserted Successfully","success")
+        // props.showAlert("Data Inserted Successfully","success")
 
         setNote({title:'',description:'',tag:''})
     }

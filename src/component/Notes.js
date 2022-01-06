@@ -15,7 +15,7 @@ const Notes = (props) => {
     useEffect(() => {
         if(localStorage.getItem('token'))
         {
-            getNotes()
+           getNotes()    
         }
         else{
             props.showAlert("Login Required to access Note","danger")
@@ -45,7 +45,7 @@ const Notes = (props) => {
         //console.log("Updating the note"+note.etitle)
         editNote(note.id,note.etitle,note.edescription,note.etag)
         modalOpenSet(!modalOpen)
-        props.showAlert("Updated Successfully","success")
+        //props.showAlert("Updated Successfully","success")
 
         // addNote(note.title,note.description,note.tag)
     }

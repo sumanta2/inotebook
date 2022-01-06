@@ -1,108 +1,130 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import NoteContext from "./noteContext";
 
 
 const NoteState = (props) => {
-  const host="http://localhost:5000/"
+  const host = "http://localhost:5000/"
   //GET ALL NOTES
-  const getNotes= async ()=>{
-    const url=`${host}api/notes/fetchallnotes`
+  const getNotes = async () => {
+    const url = `${host}api/notes/fetchallnotes`
 
-      //API CALL
-      const response= await fetch(url,{
-        method:'GET',
-        headers:{
-          'Content-Type':'application/json',
+    //API CALL
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
           'auth-token': localStorage.getItem('token')
         }
       })
-      const json= await response.json()
+      const json = await response.json()
       setNotes(json)
-      }
-    const notesInitial=[]
-      const [notes, setNotes]= useState(notesInitial)
+    }
+    catch (err) {
+      console.log("Error In Server")
+      props.showAlert("Error from server side", "danger")
+    }
+  }
+  const notesInitial = []
+  const [notes, setNotes] = useState(notesInitial)
 
-      //Add a Note
-      const addNote= async (title,description,tag)=>{
-      const url=`${host}api/notes/addnote`
+  //Add a Note
+  const addNote = async (title, description, tag) => {
+    const url = `${host}api/notes/addnote`
 
-        //API CALL
-        const response= await fetch(url,{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json',
-            'auth-token': localStorage.getItem('token')
-          },
-          body:JSON.stringify({title:title,description:description,tag:tag})
-        })
-        const note= await response.json()
-        
-        setNotes(notes.concat(note))  //here use concat() method instead of push() method because concat() add the parameter value to the existing array and return the whole array but push 
-      }
+    //API CALL
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({ title: title, description: description, tag: tag })
+      })
+      const note = await response.json()
 
-      //Delete a Note
-      const deleteNote= async (id)=>{
-        
-        //Api Call
-        const url=`${host}api/notes/deletenote/${id}`
-        //API CALL
-        const response= await fetch(url,{
-          method:'DELETE',
-          headers:{
-            'Content-Type':'application/json',
-            'auth-token': localStorage.getItem('token')
-          },
-        });
-        const json= await response.json()
-         console.log(json)
+      setNotes(notes.concat(note))  //here use concat() method instead of push() method because concat() add the parameter value to the existing array and return the whole array but push
+      props.showAlert("Data Inserted Successfully","success") 
+    }
+    catch (err) {
+      props.showAlert("Failed to add New Notes", "danger")
+    }
+  }
 
-        // console.log("deleting the note with this id"+id)
-        const newNotes= notes.filter((note)=>{ return note._id!==id})
-        setNotes(newNotes)
-        
-      }
-      //Edit a Note
-      const editNote= async (id,title,description,tag)=>{
-        const url=`${host}api/notes/updatenote/${id}`
-        //API CALL
-        const response= await fetch(url,{
-          method:'PUT',
-          headers:{
-            'Content-Type':'application/json',
-            'auth-token': localStorage.getItem('token')
-          },
-          body:JSON.stringify({title,description,tag})
-        })
-        const json= await response.json()
-        
+  //Delete a Note
+  const deleteNote = async (id) => {
 
-        let newNotes=JSON.parse(JSON.stringify(notes))
+    //Api Call
+    const url = `${host}api/notes/deletenote/${id}`
+    //API CALL
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token')
+        },
+      });
+      const json = await response.json()
+      console.log(json)
 
-        for(let index=0;index<newNotes.length;index++)
-        {
-          const element=newNotes[index]
-          if(element._id=== id)
-          {
-            // console.log('i run')
-            newNotes[index]._id=id;
-            newNotes[index].title=title;
-            newNotes[index].description=description;
-            newNotes[index].tag=tag;
-            break;
-          }
-          
+      // console.log("deleting the note with this id"+id)
+      const newNotes = notes.filter((note) => { return note._id !== id })
+      setNotes(newNotes)
+      props.showAlert("Your note Deleted Successfully","success")
+    }
+    catch (err) {
+      props.showAlert("Failed to deleting the node", "danger")
+    }
+
+  }
+  //Edit a Note
+  const editNote = async (id, title, description, tag) => {
+    const url = `${host}api/notes/updatenote/${id}`
+    //API CALL
+    try {
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'auth-token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({ title, description, tag })
+      })
+      const json = await response.json()
+
+
+      let newNotes = JSON.parse(JSON.stringify(notes))
+
+      for (let index = 0; index < newNotes.length; index++) {
+        const element = newNotes[index]
+        if (element._id === id) {
+          // console.log('i run')
+          newNotes[index]._id = id;
+          newNotes[index].title = title;
+          newNotes[index].description = description;
+          newNotes[index].tag = tag;
+          break;
         }
-        setNotes(newNotes)
 
       }
-    
-    return (
-        // in the next line in value's parameter  update is a function which pass as a object value and this function can call from another component
-        <NoteContext.Provider value={{notes:notes,addNote:addNote,deleteNote:deleteNote,editNote:editNote,getNotes:getNotes}}>
-            {props.children}
-        </NoteContext.Provider>
-    )
+      setNotes(newNotes)
+      props.showAlert("Updated Successfully","success")
+    }
+    catch (err) {
+      props.showAlert("Failed to Update Your note", "danger")
+    }
+
+  }
+
+  return (
+    // in the next line in value's parameter  update is a function which pass as a object value and this function can call from another component
+    <NoteContext.Provider value={{ notes: notes, addNote: addNote, deleteNote: deleteNote, editNote: editNote, getNotes: getNotes }}>
+      {props.children}
+    </NoteContext.Provider>
+  )
 }
 
 export default NoteState;

@@ -1,8 +1,8 @@
 inside backend/model folder we create mongoDb model which file name's first letter must be capital letter
 
-29th part    complete
+30th part    complete
 
-from here i add some feature by himself and fix some bug
+Here also fix some another bug and design about page properly
 
 
 Helping video outside from code with harry's Youtube Playlist

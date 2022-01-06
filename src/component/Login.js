@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 
@@ -6,8 +6,17 @@ const Login = (props) => {
 
     const [credentials, setCredentials] = useState({ email: '', password: '' })
     const history = useHistory()
+    useEffect(() => {
+        if(localStorage.getItem('token'))
+        {
+            props.showAlert("Already someone Login in this application","danger")
+            history.push("/")
+        }
+        
+        // modalOpenSet(false)
+    }, [])
 
-    const handleSubmit = async (e) => {
+    const HandleSubmit = async (e) => {
        try {
             e.preventDefault()
 
@@ -37,8 +46,9 @@ const Login = (props) => {
         }
         catch(err)
         {
-            console.log(err)
-            console.log("--------------------------------------------------------")
+            //console.log(err)
+
+            props.showAlert("Login Failed", "danger")
         }
     }
 
@@ -49,7 +59,7 @@ const Login = (props) => {
     return (
         <>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={HandleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
                     <input type="email" className="form-control my-2" name='email' id="exampleInputEmail1" required aria-describedby="emailHelp" value={credentials.name} onChange={onChange} placeholder="Enter email" />
