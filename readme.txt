@@ -2,7 +2,7 @@ inside backend/model folder we create mongoDb model which file name's first lett
 
 30th part    complete
 
-Here also fix some another bug and design about page properly
+Here also fix some another bug and design about page properly also fix navbar toggle option Which not wprk previous time
 
 
 Helping video outside from code with harry's Youtube Playlist
@@ -15,6 +15,9 @@ Helping video outside from code with harry's Youtube Playlist
 used dependency
 
 concurrently(npm i concurrently) hep to run react and nodejs simultaneously in same command prompt
+
+
+used bootstrap(npm install bootstrap) package to activate drop down option in Navbar and import it(import bootstrap) in index.js file
 
 react-router-dom
  ------------------------------------------

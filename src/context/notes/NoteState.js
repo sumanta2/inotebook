@@ -69,11 +69,11 @@ const NoteState = (props) => {
       });
       const json = await response.json()
       console.log(json)
-
+      props.showAlert("Your note Deleted Successfully","success")
       // console.log("deleting the note with this id"+id)
       const newNotes = notes.filter((note) => { return note._id !== id })
       setNotes(newNotes)
-      props.showAlert("Your note Deleted Successfully","success")
+     
     }
     catch (err) {
       props.showAlert("Failed to deleting the node", "danger")

@@ -17,35 +17,40 @@ const Signup = (props) => {
         const { name, email, password, cpassword } = credentials
 
         if (password === cpassword) {
+            try {
 
-            const response = await fetch("http://localhost:5000/api/auth/createuser", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, password })
-            });
-            const json = await response.json()
-            //console.log(json)
-            if (json.success === true) {
+                const response = await fetch("http://localhost:5000/api/auth/createuser", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const json = await response.json()
+                //console.log(json)
+                if (json.success === true) {
 
-                //To clear a specific item
-                //localStorage.removeItem('token');
-                localStorage.setItem('token', json.authToken)
-                props.showAlert("Account Created Successfully","success")
+                    //To clear a specific item
+                    //localStorage.removeItem('token');
+                    localStorage.setItem('token', json.authToken)
+                    props.showAlert("Account Created Successfully", "success")
 
-                history.push('/login')
+                    history.push('/login')
 
-                //redirect
+                    //redirect
+                }
+                else {
+                    // alert("False enter data")
+                    props.showAlert("Invalid Details", "danger")
+                }
             }
-            else {
-                // alert("False enter data")
-                props.showAlert("Invalid Details","danger")
+            catch (err) {
+                props.showAlert("Failed to create New Account", "danger")
             }
         }
         else {
             // alert("Last two field value must be same")
-            props.showAlert("Two password field value must be same","danger")
+            props.showAlert("Two password field value must be same", "danger")
         }
     }
 
