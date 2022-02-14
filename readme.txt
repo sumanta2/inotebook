@@ -10,6 +10,8 @@ Helping video outside from code with harry's Youtube Playlist
 //https://youtu.be/GQ0PzxV2p9k this video help to implement modal in react-js which present in component/Notes.js file in this project(used in 22th part)
  // how apply lotiefile animation in reactjs learn from this blog: https://www.freecodecamp.org/news/how-to-animate-react-apps/
 
+ Helping video to connect Mongodb-atlas database: https://youtu.be/68Jd7GXZPe8
+
 "both":"concurrently \"npm run start\" \"nodemon backend/index.js\"" ::::::::::-  in INOTEBOOK/package.json file in this line i used to run 2 npm command in same time using concurrently command(is a external package) here "\" user as a escape character which escape the "(double cote)when it present inside json when this two command run using concurrently command then this "(double cote) are present(not escape)
 
 used dependency
