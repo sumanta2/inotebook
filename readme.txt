@@ -27,3 +27,6 @@ react-router-dom
   sumantagorai.21@gmail.com                      123456
   sumantagarai.21@gmail.com                      123456
   gvhv@gmail.com                                 123456
+
+
+ #### add .env file and some bug comes need to improved leter

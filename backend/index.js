@@ -3,7 +3,8 @@ const express = require('express')
 var cors = require('cors')
 
 
-// const User=require("../models/Users");
+const dotenv=require('dotenv');
+dotenv.config({path:'./backend/mystore.env'})
 
 connectToMongo();
 

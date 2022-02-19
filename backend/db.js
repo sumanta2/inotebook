@@ -1,11 +1,29 @@
-const mongoose=require('mongoose')
-const mongoURI="mongodb://localhost:27017/inotebook?readPreference=primary&appname=MongoDB%20Compass&ssl=false";    //url for local mongodb database
-const atlasURI="mongodb+srv://sumanta21:mydata21@cluster0.rdzl4.mongodb.net/inotebook?retryWrites=true&w=majority"; //url for mongodb atlas database
 
-const connectToMongo=()=>{
-    mongoose.connect(atlasURI,()=>{
-        console.log("Mongoose connect Successfully")
-    })
+//ISSUE:: Environment variable in nodejs are not work properly need to check this issue
+
+const mongoose = require('mongoose');
+
+
+const dotenv=require('dotenv');
+dotenv.config({path:'./backend/mystore.env'})   
+
+
+const mongoURI = process.env.MONGO_URI
+
+
+const ATLAS_URI = process.env.ATLAS_URI;    //url for mongodb atlas database
+
+
+
+const connectToMongo = () => {
+    try {
+        mongoose.connect(ATLAS_URI, () => {
+            console.log("Mongoose connect Successfully")
+        })
+    }
+    catch (err) {
+        console.log("error occur at beginning", err)
+    }
 }
 
-module.exports=connectToMongo;
+module.exports = connectToMongo;
