@@ -15,11 +15,12 @@ const Signup = (props) => {
         e.preventDefault()
 
         const { name, email, password, cpassword } = credentials
+        const host = process.env.REACT_APP_host
 
         if (password === cpassword) {
             try {
 
-                const response = await fetch("http://localhost:5000/api/auth/createuser", {
+                const response = await fetch(`${host}api/auth/createuser`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
