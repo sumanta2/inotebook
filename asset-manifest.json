@@ -1,23 +1,13 @@
 {
   "files": {
-    "main.css": "/inotebook/static/css/main.6b1abc97.chunk.css",
-    "main.js": "/inotebook/static/js/main.23485d34.chunk.js",
-    "main.js.map": "/inotebook/static/js/main.23485d34.chunk.js.map",
-    "runtime-main.js": "/inotebook/static/js/runtime-main.9df69718.js",
-    "runtime-main.js.map": "/inotebook/static/js/runtime-main.9df69718.js.map",
-    "static/css/2.0a9ec390.chunk.css": "/inotebook/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.84848d5d.chunk.js": "/inotebook/static/js/2.84848d5d.chunk.js",
-    "static/js/2.84848d5d.chunk.js.map": "/inotebook/static/js/2.84848d5d.chunk.js.map",
+    "main.css": "/inotebook/static/css/main.cd49835d.css",
+    "main.js": "/inotebook/static/js/main.ec26644a.js",
     "index.html": "/inotebook/index.html",
-    "static/css/2.0a9ec390.chunk.css.map": "/inotebook/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.6b1abc97.chunk.css.map": "/inotebook/static/css/main.6b1abc97.chunk.css.map",
-    "static/js/2.84848d5d.chunk.js.LICENSE.txt": "/inotebook/static/js/2.84848d5d.chunk.js.LICENSE.txt"
+    "main.cd49835d.css.map": "/inotebook/static/css/main.cd49835d.css.map",
+    "main.ec26644a.js.map": "/inotebook/static/js/main.ec26644a.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.9df69718.js",
-    "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.84848d5d.chunk.js",
-    "static/css/main.6b1abc97.chunk.css",
-    "static/js/main.23485d34.chunk.js"
+    "static/css/main.cd49835d.css",
+    "static/js/main.ec26644a.js"
   ]
 }
