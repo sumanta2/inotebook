@@ -1,6 +1,6 @@
-As a backend We use MongoDB atals online NOSql database
+As a backend We use MongoDB atlas online NO-Sql database
 
-The backend part of this application I deploy in Heroku WEb server
+The backend part of this application I deploy in Heroku Web server
 
 The fontend Part of this application I deploy in github page
 
