@@ -30,3 +30,16 @@ react-router-dom
 
 
  #### add .env file and some bug comes need to improved leter
+
+
+                ::DEPLOYING PART FOR THIS PROJECT::
+
+
+
+ in backend-inotebook reposetory i upload the backend part seperately so easily deploy backend part in heroku
+
+ and inotebook reposetory i  used build version of the Fontend part for deploy using github pages 
+
+ fontend deploy helping video: https://youtu.be/mdO18zv3oGQ
+
+ Deploying link for this website:  https://sumanta2.github.io/inotebook/
