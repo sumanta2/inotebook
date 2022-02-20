@@ -16,11 +16,13 @@ const Login = (props) => {
         // modalOpenSet(false)
     }, [])
 
+    const host = process.env.REACT_APP_host
+
     const HandleSubmit = async (e) => {
        try {
             e.preventDefault()
 
-            const response = await fetch("http://localhost:5000/api/auth/login", {
+            const response = await fetch(`${host}api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
