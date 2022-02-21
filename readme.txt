@@ -43,3 +43,6 @@ react-router-dom
  fontend deploy helping video: https://youtu.be/mdO18zv3oGQ
 
  Deploying link for this website:  https://sumanta2.github.io/inotebook/
+
+
+ npm run deploy command for deploy or make change in deployed code

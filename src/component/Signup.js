@@ -33,10 +33,10 @@ const Signup = (props) => {
 
                     //To clear a specific item
                     //localStorage.removeItem('token');
-                    localStorage.setItem('token', json.authToken)
-                    props.showAlert("Account Created Successfully", "success")
+                    localStorage.setItem('token', json.authToken)  //to remove already user login msg after create account it inactive
+                    props.showAlert("Account Created and Log-In Successfully", "success")
 
-                    history.push('/login')
+                    history.push('/')
 
                     //redirect
                 }
