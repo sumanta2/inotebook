@@ -1,15 +1,17 @@
 import React, { useState,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-
+import Loader from './Loader.js'
 
 const Login = (props) => {
 
     const [credentials, setCredentials] = useState({ email: '', password: '' })
+    const [getLogin,setLogin] =useState(false)
     const history = useHistory()
     useEffect(() => {
         if(localStorage.getItem('token'))
         {
             props.showAlert("Already someone Login in this application","danger")
+            setLogin(false)
             history.push("/")
         }
         
@@ -21,6 +23,7 @@ const Login = (props) => {
     const HandleSubmit = async (e) => {
        try {
             e.preventDefault()
+            setLogin(true)
 
             const response = await fetch(`${host}api/auth/login`, {
                 method: 'POST',
@@ -35,6 +38,7 @@ const Login = (props) => {
                 //To clear a specific item
                 //localStorage.removeItem('token');
                 localStorage.setItem('token', json.authToken)
+                setLogin(false)
                 props.showAlert("Logged in Successfully", "success")
                 history.push('/')
 
@@ -43,19 +47,25 @@ const Login = (props) => {
             else {
                 //   alert("False enter data")
                 localStorage.setItem('token', '')
+                setLogin(false)
                 props.showAlert("Invalid Credentials", "danger")
             }
         }
         catch(err)
         {
             console.log(err)
-
+            setLogin(false)
             props.showAlert("Login Failed", "danger")
         }
     }
 
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    }
+
+    if (getLogin)
+    {
+        return <Loader/>
     }
 
     return (

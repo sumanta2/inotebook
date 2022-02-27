@@ -14,9 +14,7 @@ const About = () => {
     const InnerDiv = styled.div`
         display:flex;
         justify-content:center;
-        align-item:center;
         flex-direction:column;
-        { /* border:2px solid red; */}
         width:35vw;
         margin:7px;
         height:55vh;

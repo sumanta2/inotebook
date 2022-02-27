@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
 import noteContext from "../context/notes/noteContext"
+import Loader from './Loader'
 
 const AddNote=(props)=>{
     const context=useContext(noteContext)
-    const {addNote}=context;
+    const {addNote,loaderState}=context;
 
     const [note,setNote]=useState({title:'',description:'',tag:''})
     
@@ -18,6 +19,12 @@ const AddNote=(props)=>{
 
         setNote({title:'',description:'',tag:''})
     }
+
+    if (loaderState)
+    {
+        return <Loader/>
+    }
+
     return(
         <div>
             <h2>Add a Note</h2>

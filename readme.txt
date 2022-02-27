@@ -46,3 +46,6 @@ react-router-dom
 
 
  npm run deploy command for deploy or make change in deployed code
+
+
+ When logged in and add a note this time only add the loading icon

@@ -6,10 +6,12 @@ import NoteContext from "./noteContext";
 const NoteState = (props) => {
   const host = process.env.REACT_APP_host
   //GET ALL NOTES
+  const [loaders,setLoaders] =useState(false)
   const getNotes = async () => {
     const url = `${host}api/notes/fetchallnotes`
 
     //API CALL
+    setLoaders(true)
     try {
       const response = await fetch(url, {
         method: 'GET',
@@ -19,10 +21,12 @@ const NoteState = (props) => {
         }
       })
       const json = await response.json()
+      setLoaders(false)
       setNotes(json)
     }
     catch (err) {
       console.log("Error In Server")
+      setLoaders(false)
       props.showAlert("Error from server side", "danger")
     }
   }
@@ -33,6 +37,7 @@ const NoteState = (props) => {
   const addNote = async (title, description, tag) => {
     const url = `${host}api/notes/addnote`
 
+    setLoaders(true)
     //API CALL
     try {
       const response = await fetch(url, {
@@ -46,9 +51,11 @@ const NoteState = (props) => {
       const note = await response.json()
 
       setNotes(notes.concat(note))  //here use concat() method instead of push() method because concat() add the parameter value to the existing array and return the whole array but push
+      setLoaders(false)
       props.showAlert("Data Inserted Successfully","success") 
     }
     catch (err) {
+      setLoaders(false)
       props.showAlert("Failed to add New Notes", "danger")
     }
   }
@@ -121,7 +128,7 @@ const NoteState = (props) => {
 
   return (
     // in the next line in value's parameter  update is a function which pass as a object value and this function can call from another component
-    <NoteContext.Provider value={{ notes: notes, addNote: addNote, deleteNote: deleteNote, editNote: editNote, getNotes: getNotes }}>
+    <NoteContext.Provider value={{ notes: notes, addNote: addNote, deleteNote: deleteNote, editNote: editNote, getNotes: getNotes,loaderState:loaders }}>
       {props.children}
     </NoteContext.Provider>
   )

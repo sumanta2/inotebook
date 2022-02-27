@@ -9,6 +9,7 @@ import Login from './component/Login';
 import Signup from './component/Signup';
 import { useState } from 'react';
 import NotFound from './component/NotFound';
+import Loader from './component/Loader';
 
 
 function App() {
